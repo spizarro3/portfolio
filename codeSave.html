@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/main.css">
+    <title>Document</title>
+    <style>
+        #pokemonSection {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100%;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+
+        #pokemonSelect {
+            flex: 1;
+            overflow-y: auto;
+            list-style: none;
+            padding-right: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            background-color: #fff;
+            padding: 10px;
+        }
+
+        #pokemonSelect li {
+            margin: 5px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #pokemonSelect img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        #pokemonSelect img:hover {
+            transform: scale(1.1);
+        }
+
+        #pokemonBox {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 150px;
+            height: 100px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        #pokemonBox img {
+            max-width: 80px;
+            max-height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body id="pokemonSection">
+    <p>Choose a pokemon to join you on this journey:</p>
+    <ol id="pokemonSelect"></ol>
+
+    <!-- The pokemonBox will be dynamically inserted here -->
+    <div id="pokemonBoxContainer"></div>
+
+    <script>
+        class Pokemon {
+            constructor(name, type, img, abilities = {}) {
+                this.name = name;
+                this.type = type;
+                this.img = img;
+                this.abilities = abilities;
+            }
+
+            initialize() {
+                console.log(`Initializing: ${this.name}, type: ${this.type}`);
+                console.log("moves:", this.abilities.normal, "&", this.abilities.special);
+            }
+        }
+
+        class PokedexController {
+            constructor() {
+                this.pokemonArray = [];
+            }
+
+            async fetchPokemonData() {
+                const baseUrl = "https://pokeapi.co/api/v2";
+                const pokemonListUrl = `${baseUrl}/pokemon?limit=151`;
+
+                try {
+                    const response = await fetch(pokemonListUrl);
+                    const data = await response.json();
+
+                    const pokemonDetails = await Promise.all(
+                        data.results.map(pokemon => fetch(pokemon.url).then(res => res.json()))
+                    );
+
+                    return pokemonDetails;
+                } catch (error) {
+                    console.error("Error fetching Pokémon data:", error);
+                    return [];
+                }
+            }
+
+            storePokemonData(pokemonDetails) {
+                this.pokemonArray = pokemonDetails.map(details => {
+                    const name = details.name;
+                    const type = details.types.map(t => t.type.name).join(", ");
+                    const img = details.sprites.front_default;
+                    const abilities = details.abilities.map(a => a.ability.name);
+
+                    return new Pokemon(name, type, img, abilities);
+                });
+
+                console.log("Stored Pokémon:", this.pokemonArray);
+            }
+
+            renderPokemon() {
+                const pokemonSelectElement = document.getElementById("pokemonSelect");
+
+                if (!pokemonSelectElement) {
+                    console.error("Element with ID #pokemonSelect not found.");
+                    return;
+                }
+
+                this.pokemonArray.forEach(pokemon => {
+                    const li = document.createElement("li");
+                    const img = document.createElement("img");
+                    img.src = pokemon.img;
+                    img.alt = pokemon.name;
+
+                    img.addEventListener("click", () => {
+                        this.addToBottomRightBox(pokemon.img);
+                    });
+
+                    li.appendChild(img);
+                    pokemonSelectElement.appendChild(li);
+                });
+            }
+
+            async addToBottomRightBox(imgSrc) {
+                // Fetch the index.html to get the #pokemonBox
+                try {
+                    const response = await fetch('/Users/samuelpizarro/CODE/portfolio/index.html');  // Adjust path if needed
+                    const html = await response.text();
+
+                    // Parse the fetched HTML and extract the #pokemonBox element
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const pokemonBox = doc.getElementById('pokemonBox');
+
+                    if (pokemonBox) {
+                        // If we found the #pokemonBox, append it to the current page
+                        const pokemonBoxContainer = document.getElementById('pokemonBoxContainer');
+                        pokemonBoxContainer.innerHTML = ''; // Clear existing content
+                        pokemonBoxContainer.appendChild(pokemonBox);
+
+                        // Create an image to append
+                        const img = document.createElement("img");
+                        img.src = imgSrc;
+                        pokemonBox.innerHTML = '';  // Clear any existing image
+                        pokemonBox.appendChild(img);
+                    } else {
+                        console.error('Error: #pokemonBox not found in index.html.');
+                    }
+                } catch (error) {
+                    console.error('Error fetching index.html:', error);
+                }
+            }
+
+            async initialize() {
+                const pokemonDetails = await this.fetchPokemonData();
+                this.storePokemonData(pokemonDetails);
+                this.renderPokemon();
+            }
+        }
+
+        const controller = new PokedexController();
+        controller.initialize();
+    </script>
+</body>
+</html>
