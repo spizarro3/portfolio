@@ -1,7 +1,5 @@
 async function loadContent(page, elementId) {
     try {
-    
-
         const response = await fetch(`/pages/${page}.html`); // Path to local file
         const html = await response.text();
             
@@ -13,17 +11,22 @@ async function loadContent(page, elementId) {
 
             // Switch case to handle different sections
             switch (element.id) {
+                case 'sectionHome':
+                    element.style.backgroundColor = '#2C3E50';
+                    break;
+              
                 case 'sectionAboutMe':
-                    element.style.backgroundColor = 'lightorange';
+                    element.style.backgroundColor = '#4682b4';
                     break;
 
                 case 'sectionPokemon':
                     element.style.display = 'flex';
                     element.style.flexDirection = 'column';
+                    element.style.backgroundColor = '#2C3E50';
                     break;
 
                 case 'sectionPortfolio':
-                    element.style.backgroundColor = 'lightred';
+                    element.style.backgroundColor = 'red';
                     break;
 
                 case 'sectionResume':
@@ -37,13 +40,15 @@ async function loadContent(page, elementId) {
                 default:
                     console.log('Section ID not recognized');
                     break;
-            }}
+                }
+            }
 
         } catch (error) {
             console.error('Error loading content:', error);
     }
 }
 console.log('Loading html content...');
+loadContent('home', 'sectionHome'); 
 loadContent('aboutme', 'sectionAboutMe'); 
 loadContent('pokemon/pokemon', 'sectionPokemon'); 
 loadContent('skills', 'sectionPortfolio'); 

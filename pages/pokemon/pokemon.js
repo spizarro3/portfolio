@@ -1,6 +1,6 @@
-window.onload = function() {
+window.onload = function () {
     console.log("Pokemon script loaded successfully");
-    
+
     class Pokemon {
         constructor(name, type, img, abilities = {}) {
             this.name = name;
@@ -48,8 +48,6 @@ window.onload = function() {
 
                 return new Pokemon(name, type, img, abilities);
             });
-
-         //   console.log("Stored Pokémon:", this.pokemonArray);
         }
 
         renderPokemon() {
@@ -65,9 +63,11 @@ window.onload = function() {
                 const img = document.createElement("img");
                 img.src = pokemon.img;
                 img.alt = pokemon.name;
+                img.draggable = true;  // Make the Pokémon image draggable
 
-                img.addEventListener("click", () => {
-                    this.addToBottomRightBox(pokemon.img);
+                // Handle the start of the drag event
+                img.addEventListener("dragstart", (event) => {
+                    event.dataTransfer.setData("text", event.target.src);  // Store the image source
                 });
 
                 li.appendChild(img);
@@ -75,40 +75,51 @@ window.onload = function() {
             });
         }
 
-        async addToBottomRightBox(imgSrc) {
-            // Fetch the index.html to get the #pokemonBox
-            try {
-                const response = await fetch('../index.html');  // Adjust path if needed
-                const html = await response.text();
+        setupDropArea() {
+            const pokemonBoxContainer = document.getElementById("pokemonBoxContainer");
 
-                // Parse the fetched HTML and extract the #pokemonBox element
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const pokemonBox = doc.getElementById('pokemonBox');
-
-                if (pokemonBox) {
-                    // If we found the #pokemonBox, append it to the current page
-                    const pokemonBoxContainer = document.getElementById('pokemonBoxContainer');
-                    pokemonBoxContainer.innerHTML = ''; // Clear existing content
-                    pokemonBoxContainer.appendChild(pokemonBox);
-
-                    // Create an image to append
-                    const img = document.createElement("img");
-                    img.src = imgSrc;
-                    pokemonBox.innerHTML = '';  // Clear any existing image
-                    pokemonBox.appendChild(img);
-                } else {
-                    console.error('Error: #pokemonBox not found in index.html.');
-                }
-            } catch (error) {
-                console.error('Error fetching index.html:', error);
+            // Ensure the drop area is set up correctly
+            if (!pokemonBoxContainer) {
+                console.error("Element with ID #pokemonBoxContainer not found.");
+                return;
             }
+
+            // Allow the drop target to accept dragged items
+            pokemonBoxContainer.addEventListener("dragover", (event) => {
+                event.preventDefault(); // Allow the drop
+            });
+
+            pokemonBoxContainer.addEventListener("drop", (event) => {
+                event.preventDefault();
+                const imgSrc = event.dataTransfer.getData("text"); // Get the dragged image source
+
+                // Create a new image element for the dropped Pokémon
+                const img = document.createElement("img");
+                img.src = imgSrc;
+                img.style.width = "100px";  // Set the size of the dropped image
+                img.style.height = "100px";
+                img.style.objectFit = "cover";
+                img.style.position = "absolute";
+
+                // Randomize the position of the image within the container
+                const containerWidth = pokemonBoxContainer.offsetWidth;
+                const containerHeight = pokemonBoxContainer.offsetHeight;
+                const randomX = Math.floor(Math.random() * (containerWidth - 100)); // Random X position (considering the width of the image)
+                const randomY = Math.floor(Math.random() * (containerHeight - 100)); // Random Y position (considering the height of the image)
+
+                img.style.left = `${randomX}px`;
+                img.style.top = `${randomY}px`;
+
+                // Append the image to the container
+                pokemonBoxContainer.appendChild(img);
+            });
         }
 
         async initialize() {
             const pokemonDetails = await this.fetchPokemonData();
             this.storePokemonData(pokemonDetails);
             this.renderPokemon();
+            this.setupDropArea(); // Setup the drop area after rendering Pokémon
         }
     }
 

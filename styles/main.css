@@ -1,21 +1,44 @@
 body{
     display: flex;
     flex-direction: column;
-    background-color: pink;
+    background-color: #2C3E50;
 }
-nav ul{
+nav ul {
     display: flex;
     flex-direction: row;
-    position: sticky;
+    position: fixed;
     justify-content: space-evenly;
+    align-items: center; /* Align items vertically */
+    top: 0; /* Fix at the top of the viewport */
+    width: 100%; /* Ensure it spans the full width */
+    padding: 10px 20px; /* Add spacing inside the nav bar */
+    margin: 0; /* Remove default margin */
+    list-style-type: none; /* Remove bullets */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    z-index: 1000; /* Ensure it stays above other elements */
+}
 
-    list-style-type: none;
+nav ul li {
+    margin: 0 10px; /* Add horizontal spacing between list items */
 }
+
+nav ul li a {
+    text-decoration: none; /* Remove underline from links */
+    color: white; /* White text for links */
+    font-weight: bold; /* Make the text bold */
+    font-size: 1rem; /* Set a clear font size */
+    padding: 5px 10px; /* Add some padding around the text */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+    border-radius: 4px; /* Rounded edges for hover effect */
+}
+
+nav ul li a:hover {
+    background-color: white; /* Change background on hover */
+    color: black; /* Change text color on hover */
+}
+
 section{
-    height: 50vh;
-}
-iframe{
-    width: 100%;
     height: 50vh;
 }
 
