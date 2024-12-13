@@ -9,35 +9,40 @@
     color: white;
 }
 
-h1, ol {
+#sectionHome h1, ol {
     text-align: center; /* Center text inside h1 and ol */
     margin: 0; /* Remove default margin for better alignment */
 }
-h1{
+#sectionHome h1{
     font-size: 4rem; /* Adjust size to your preference */
     font-weight: bold;
 }
-ol{
+#sectionHome ol{
     display: flex;
     flex-direction: row;
     list-style-type: none;
     justify-content: space-between;
 }
-li{
+ol:nth-of-type(2) li:nth-child(even) {
+    color: #90EE90; 
+    font-weight: bolder;
+}
+
+#sectionHome li{
     padding: 10px;
 }
 
 </style>
 
-<h1>Samuel Pizarro Martinez</h1>
+<h1 label="Name">Samuel Pizarro Martinez</h1>
 <ol>
-    <li>Fullstack Developer</li>
-    <li>Chicago, IL</li>
+    <li label="Role">Fullstack Developer</li>
+    <li label="Location">Chicago, IL</li>
 </ol>
-<ol>
-    <li>Fullstack Developer</li>
+<ol label="Labels">
+    <li>Bike Nerd</li>
     <li>|</li>
-    <li>ITM Graduate Student</li>
+    <li>I T M&nbsp&nbsp&nbspGraduate Student</li>
     <li>|</li>
-    <li>Problem Solver</li>
+    <li>Code Rancher</li>
 </ol>

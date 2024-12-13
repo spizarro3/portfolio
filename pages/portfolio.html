@@ -1,1 +1,148 @@
-<a>portfolio</a>>
+<style>
+#sectionPortfolio {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    margin: 10px;
+    border: 2px solid #90EE90;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#sectionPortfolio h2 {
+    margin: 20px 0;
+}
+
+#sectionPortfolio ol {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex: 1; /* Ensure this section takes up available vertical space */
+}
+
+#sectionPortfolio ol li {
+    padding: 10px;
+}
+
+#sectionPortfolio ol li:first-child {
+    flex: 1; /* 1/3 of the width */
+    padding-right: 20px;
+}
+
+#sectionPortfolio ol li:nth-child(2) {
+    flex: 2; /* 2/3 of the width */
+}
+
+#sectionPortfolio ol li ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sectionPortfolio ol li ul li {
+    cursor: pointer;
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#sectionPortfolio ol li ul li:hover {
+    background-color: #d3f7d3;
+}
+
+#sectionPortfolio ol li ul li.active {
+    background-color: #90EE90; /* Highlight active item */
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Ensure items align at the top */
+    align-items: flex-start; /* Ensure items align at the left */
+    padding: 20px;
+    height: 100%;
+}
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#content ul {
+    list-style: none; /* Remove default bullets */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    width: 100%; /* Take full width of the parent */
+}
+
+#content ul li {
+    text-align: left; /* Align text to the left */
+    margin: 5px 0; /* Optional spacing between items */
+    padding: 0; /* Ensure no additional padding */
+}
+
+
+#sectionPortfolio .bottom-section {
+    display: flex;
+    width: 100%;
+    flex: 1; /* Take up remaining vertical space */
+}
+
+#sectionPortfolio .bottom-section .half {
+    flex: 1; /* 50% width each */
+    padding: 10px;
+    border: 1px solid #90EE90;
+    height: 100%; /* Take up full height of bottom section */
+    box-sizing: border-box; /* Ensure padding is included in height calculation */
+}
+
+
+</style>
+<div id="sectionPortfolio">
+    <h2><span class="highlight">3. </span> Portfolio</h2>
+    
+    <ol> Projects
+        <!-- Left side section (1/3 width) -->
+        <li>
+            <ul class="projects">
+                <li onmouseover="loadContent('projects/bikeShopApp/bikeShop', 'content')" onclick="loadContent('projects/bikeShopApp/bikeShop', 'content'); loadContent('projects/bikeShopApp/bikeShopL', 'leftDiv' ); loadContent('projects/bikeShopApp/bikeShopR', 'rightDiv' )" class="active">Bike Shop</li>
+                <li id="pokemonLi" onmouseover="loadContent('projects/pokemon/pokemon', 'content')" onclick="loadContent('projects/pokemon/pokemon', 'content'); initializePokemon()">Pokemon</li>
+            </ul>
+        </li>
+        
+        <!-- Right side section (2/3 width) -->
+        <li>
+            <div id="content">
+                <h3>Buffer content</h3>
+                <ul>
+                    <li>buff</li>
+                    <li>nerff</li>
+                </ul>
+            </div>
+        </li>
+    </ol>
+
+    <hr style="width: 100%; border: 1px solid #90EE90; margin: 20px 0" >
+
+    <!-- 2 Additional Divs (Bottom left and Bottom right) -->
+    <div class="bottom-section">
+        <div class="half" id="leftDiv">
+            <p>Left content (half-width)</p>
+        </div>
+        
+        <div class="half" id="rightDiv">
+            <p>Right content (half-width)</p>
+        </div>
+    </div>
+</div>
+
+<script>console.log('does this work now')</script>

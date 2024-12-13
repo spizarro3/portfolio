@@ -1,29 +1,46 @@
-body{
+body {
     display: flex;
     flex-direction: column;
     background-color: #2C3E50;
+    margin: 30px; /* Ensure no default body margin */
+    padding: 0; /* Ensure no default body padding */
+
+    color: white;
 }
-nav ul {
+.highlight{
+    color: #90EE90;
+    font-size: 18px ;
+    font-weight: bold;
+}
+
+
+nav ol {
     display: flex;
     flex-direction: row;
     position: fixed;
     justify-content: space-evenly;
     align-items: center; /* Align items vertically */
     top: 0; /* Fix at the top of the viewport */
-    width: 100%; /* Ensure it spans the full width */
-    padding: 10px 20px; /* Add spacing inside the nav bar */
-    margin: 0; /* Remove default margin */
-    list-style-type: none; /* Remove bullets */
+    left: 0; /* Ensure no space on the left */
+    right: 0; /* Ensure no space on the right */
+    padding: 10px 20px; /* Add padding inside the nav bar */
     background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     z-index: 1000; /* Ensure it stays above other elements */
+    margin: 0; /* Remove default margin */
 }
 
-nav ul li {
-    margin: 0 10px; /* Add horizontal spacing between list items */
+/* Ensures that the list markers in the nav list are green */
+nav ol li::marker {
+    color: #90EE90;
+    font-size: 0.8em;
 }
 
-nav ul li a {
+nav ol li {
+    margin: 0 10px; /* Adds horizontal spacing between list items */
+}
+
+nav ol li a {
     text-decoration: none; /* Remove underline from links */
     color: white; /* White text for links */
     font-weight: bold; /* Make the text bold */
@@ -33,27 +50,40 @@ nav ul li a {
     border-radius: 4px; /* Rounded edges for hover effect */
 }
 
-nav ul li a:hover {
+nav ol li a:hover {
     background-color: white; /* Change background on hover */
     color: black; /* Change text color on hover */
 }
 
-section{
+section {
     height: 50vh;
 }
 
-#pokemonBox {
-    position: fixed; /* Fixes the box in place relative to the viewport */
+#scheduleBtn {
+    position: fixed; /* Fixes the button in place relative to the viewport */
     bottom: 20px; /* Position from the bottom */
     right: 20px; /* Position from the right */
-    width: 150px; /* Set a fixed width */
-    height: 100px; /* Set a fixed height */
+    padding: 10px 20px; /* More padding for a larger click area */
     background-color: transparent; /* Make the background fully transparent */
-    color: white; /* White text */
+    color: #90EE90; /* Light green text color */
     display: flex;
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
+    border: 2px solid #90EE90; /* Slightly thicker border for emphasis */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Optional: Add a shadow for better visibility */
     z-index: 1000; /* Ensure it stays on top of other elements */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    transition: all 0.3s ease; /* Smooth transition for background, border, and text color changes */
+}
+
+#scheduleBtn:hover {
+    background-color: #90EE90; /* Light green background on hover */
+    color: white; /* White text color on hover */
+    border-color: white; /* Change the border to white on hover */
+}
+
+#scheduleBtn:active {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Slightly smaller shadow to simulate a press effect */
+    transform: scale(0.98); /* Button shrinks slightly when clicked */
 }

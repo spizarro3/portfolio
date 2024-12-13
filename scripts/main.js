@@ -1,58 +1,44 @@
 async function loadContent(page, elementId) {
     try {
         const response = await fetch(`/pages/${page}.html`); // Path to local file
+        if (!response.ok) {
+            throw new Error(`Failed to load page: ${page}`);
+        }
         const html = await response.text();
-            
+        
         // Inject the content into a specific element
         const element = document.getElementById(elementId);
 
         if (element) {
+            element.style.backgroundImage = 'none'
             element.innerHTML = html;
-
-            // Switch case to handle different sections
-            switch (element.id) {
-                case 'sectionHome':
-                    element.style.backgroundColor = '#2C3E50';
-                    break;
-              
-                case 'sectionAboutMe':
-                    element.style.backgroundColor = '#4682b4';
-                    break;
-
-                case 'sectionPokemon':
-                    element.style.display = 'flex';
-                    element.style.flexDirection = 'column';
-                    element.style.backgroundColor = '#2C3E50';
-                    break;
-
-                case 'sectionPortfolio':
-                    element.style.backgroundColor = 'red';
-                    break;
-
-                case 'sectionResume':
-                    element.style.backgroundColor = 'lightgreen';
-                    break;
-
-                case 'sectionContact':
-                    element.style.backgroundColor = 'lightblue';
-                    break;
-
-                default:
-                    console.log('Section ID not recognized');
-                    break;
-                }
-            }
-
-        } catch (error) {
-            console.error('Error loading content:', error);
+            
+        } else {
+            throw new Error(`Element with id ${elementId} not found`);
+        }
+    } catch (error) {
+        console.error('Error loading content:', error);
     }
 }
+//is loadProjects being used?
+async function loadProjects(){
+  
+    const contentLeftDiv = document.getElementById("leftDiv");
+    const contentRightDiv = document.getElementById("rightDiv");
+
+    if (contentLeftDiv && contentRightDiv){
+        console.log(contentLeftDiv, contentRightDiv)
+    }
+}
+
+
+//Loading all HTML content
 console.log('Loading html content...');
 loadContent('home', 'sectionHome'); 
 loadContent('aboutme', 'sectionAboutMe'); 
 loadContent('pokemon/pokemon', 'sectionPokemon'); 
-loadContent('skills', 'sectionPortfolio'); 
-loadContent('portfolio', 'sectionResume'); 
+loadContent('skills', 'sectionSkills'); 
+loadContent('portfolio', 'sectionPortfolio'); 
 loadContent('resume', 'sectionResume'); 
 loadContent('contact', 'sectionContact'); 
-  
+
