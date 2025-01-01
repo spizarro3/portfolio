@@ -1,73 +1,74 @@
 <style>
-    #sectionPokemon{
-        background-color: pink;
-    }
-    div {
-        display: flex;
-        flex-direction: row; /* Arrange child elements in a row */
-        width: 100%;
-        height: 25vh;
-        overflow: hidden; /* Prevent overflow outside the container */
-        margin: 10px; 
-    }
-    h1{
-        display: flex;
-        justify-content: center;
-    }
-    
-    #leftDiv {
-        flex: 1; /* Take up half the space */
-        height: 100%;
-        overflow-y: auto;
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: flex-start;
-        background-color: #fff; /* Background color for visibility */
-        padding: 10px;
-        background-color: rgba(0, 0, 0, 0.2);
-        border-right: 1px solid #ddd; /* Divider between sections */
-    }
-    #leftDiv::-webkit-scrollbar {
-        display: none; /* remove scroll wheel from screen */
-    }
-    #leftDiv li {
-            margin: 5px;
-            display: flex;
-            justify-content: center;
-    }
-    
-    #pokemonSelect img {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.2s ease-in-out;
-    }
-    
-    #leftDiv img:hover {
-            transform: scale(1.1);
-    }
-    
-    #rightDiv {
-        flex: 1;
-        position: relative;
-        height: 100%;
-        background-color: #f4f4f4;
-        border: 1px dashed #000;
-        overflow: hidden; /* Hide overflow if images go beyond the container */
-    }
-    
-    </style>
-<h2>Pokemon Game App</h2>
+    #sectionPortfolio #mainPane{
+    overflow: auto;
+}
+#leftDiv {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 2px solid #ccc;
+    width: 100%;
+    height: 100px;
+    overflow: auto;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#leftDiv img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: grab;
+    transition: transform 0.2s ease;
+}
+
+#leftDiv img:active {
+    cursor: grabbing;
+}
+
+#leftDiv img:hover {
+    transform: scale(1.1);
+}
+
+#rightDiv {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #ccc;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+#rightDiv img {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+}
+
+#rightDiv img:hover {
+    transform: scale(1.1);
+}
+
+/* Highlight the drop zone when dragging over */
+#rightDiv.drag-over {
+    outline: 2px dashed #90EE90;
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
+</style>
+
 <ul>
+    <h3>Pokemon Game App</h3>
     <li>
-        A dynamic Pokémon app fetches and displays Pokémon data from the PokéAPI, allowing users to explore and interact with their favorite creatures.        </li>
-    <li>
+        A dynamic Pokémon app fetches and displays Pokémon data from the PokéAPI, allowing users to explore and interact with their favorite creatures.        
+   
         Users can drag and drop Pokémon images into a customizable container with a styled background.
-    </li>
-    <li>
-        Features include random positioning of Pokémon within the container and draggable interactions for a playful experience.        </li>
+        Features include random positioning of Pokémon within the container and draggable interactions for a playful experience.       
+     </li>
 </ul>
-<p>Tech: Java OOP Model & Controller | Pokemon API</p>
+<div id="leftDiv"></div>
+<div id="rightDiv"></div>

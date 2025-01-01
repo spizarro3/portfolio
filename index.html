@@ -4,16 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/main.css">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <title>Samuel Pizarro Martinez</title>
 </head>
+<style>
+  .pt-serif-regular-italic {
+    font-family: "PT Serif", serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+</style>
 <body>
     <!-- placeholder in case -->
     <!-- <header></header> -->
     <nav>
       <ol label="Nav Bar">
-          <li><a href="#sectionAboutMe">About Me</a></li>
-          <li><a href="#sectionPokemon">Pick Your Pokémon!</a></li>
-          <li><a href="#sectionSkills">Skills</a></li>
+          <li><a href="#sectionHome">Home</a></li>
+          <li><a href="#sectionAboutMe">About Me & Skills</a></li>   
           <li><a href="#sectionPortfolio">Portfolio</a></li>
           <li><a href="#sectionResume">Resume</a></li>
           <li><a href="#sectionContact">Contact</a></li>
@@ -21,17 +30,16 @@
   </nav>
     <button id="scheduleBtn" label="ScheduleBtn">Schedule a call</button>
    
-
+      <!-- add section here. Create files in Pages folder and invoke loadContent(sectionID, htmlFilePath) from the scripts>main.js -->
      <section id="sectionHome"></section>
      <section id="sectionAboutMe"></section>
      <section id="sectionSkills"></section>
      <section id="sectionPortfolio"></section>
-     <section id="sectionPokemon"></section>
      <section id="sectionResume"> </section>
      <footer id="sectionContact"></footer>
      
     <script src="/scripts/main.js"></script>
-    <script src="/pages/pokemon/pokemon.js"></script>
     <script src="/pages/projects/pokemon/pokemon.js"></script>
+    <script src="/scripts/modal.js" defer></script>
 </body>
 </html>

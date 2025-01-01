@@ -1,60 +1,277 @@
 <style>
-#sectionResume{
+/* Main resume section */
+#sectionResume {
     display: flex;
     flex-direction: column;
-    height: 90vh;
+    height: 40vh;
+    width: 800px;
+    /* padding-bottom: 100px; */
 }
+
+#sectionResume h2 {
+    margin: 0;
+    padding: 10px;
+    text-align: start;
+}
+
+/* Content area: splits into two columns */
+#sectionResume .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; /* Align items horizontally at the start */
+    align-self: flex-start; /* Align the content to the top of the parent */
+    width: 100%;
+    padding: 10px;
+    margin: 0; /* Remove any margin that might push it down */
+}
+/* working on this section */
+#resumeExperience {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+
+    
+}
+/* Education section */
+#resumeEducation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    flex: 1;
+    
+}
+/*--------------------------*/
+
+.resumeExperience{
+    display: flex;
+    align-items: flex-start;
+    list-style-position: inside;
+    list-style-type: disc;
+
+    width: 350px;
+}
+.resumeExperience li:not(:first-child){
+        text-indent: 10px;
+}
+/* General list styling */
+#sectionResume ol {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Highlight first job title */
+.resumeExperience li:first-child {
+    list-style-type: none;
+    font-weight: bold;
+    color: #FFD966;
+}
+
+.content h3 {
+    margin: 0 0 10px;
+}
+#resumeEducation ul {
+    width: 100%;
+    list-style: none; /* Remove list styling */
+    padding: 0;
+    margin: 0;
+}
+#resumeEducation li {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 10px; /* Space between image and text */
+    list-style: none; /* Remove default list style */
+    
+}
+/* Styling for education/service details  p tags*/
+.schoolAndService {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 50px;
+}
+#resumeEducation img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+.schoolAndService p{
+    margin: 0;
+}
+
+.schoolAndService p + p {
+    margin-top: auto;
+}
+#resumeWeb{
+    display: block;
+}
+#resumeMobile{
+        display:none;
+    }
+@media (max-width: 768px) {
+    /* General container adjustments */
+    #sectionResume {
+        height: 55vh;
+        width: 100%; /* Full width for smaller screens */
+        padding: 10px; /* Add padding for better spacing */
+     
+    }
+
+    .content {
+        flex-direction: column; /* Stack content vertically */
+        flex-wrap: wrap; /* Prevent unnecessary wrapping */
+    }
+
+    #resumeExperience,
+    #resumeEducation {
+       
+        flex: none; /* Remove flex-grow/shrink */
+        width: 100%; /* Take full width */
+        /* margin-bottom: 20px;  */
+    }
+    #resumeEducation{
+        display: flex;
+        flex-direction: row;
+        margin-top: 20px;
+
+    }
+
+    /* Adjust the list styling */
+    .resumeExperience {
+        width: 100%; /* Ensure lists take full width */
+        padding: 0;
+        margin: 0 auto; /* Center align the lists */
+    }
+/* all education and service*/
+    #resumeEducation ul{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+    }
+    #resumeEducation h2{
+          /* margin-top: 100px */
+    }
+/* FSA and USAAR targetted*/
+    #resumeEducation h3{
+        display: flex;
+        justify-content: center;
+
+    }
+    /* Ensure Education images and text stack on smaller screens */
+    #resumeEducation .logos {
+        display:flex;
+        flex-direction: row; /* Stack image and text vertically */
+        align-items: center; /* Center align items */
+        justify-content: space-between;
+        text-align: center; /* Center align text */
+    }
+    #resumeEducation li {
+        flex-direction: column; /* Stack image and text vertically */
+        align-items: center; /* Center align items */
+        text-align: center; /* Center align text */
+
+    }
+
+    #resumeEducation img {
+        margin-bottom: 10px; /* Add space below the image */
+    }
+
+    .schoolAndService {
+        align-items: center; /* Center align text */
+    }
+    #resumeWeb{
+        display: none;
+    }
+    #resumeMobile{
+        display:block
+    }
+}
+
 </style>
-<h2 label="Resume"><span class="highlight">4. </span> Resume</h2>
+    
+<!-- Resume Section -->
 
-<br>
-Experience
-<br>
-Fullstack Academy, New York, Remote                                                                      February 2023 - April 2024
-<br>
-Academic Success Manager for Amazon Career Choice
-<br>
-Supervised day-to-day activities of 13 bootcamp cohorts to ensure the delivery of the company brand promise of exceptional learning experience
-Strategic consultant and first line of defense to troubleshoot course & technical content-related queries or clarifications needs for 39 instructors and mentors
-Designed multiple platforms to monitor and report on success, performance, and employee time
-Dedicated one-on-one support with the visually impaired student, enhancing their technology competency.
-Mentor, Web Development                                                                                                   January 2022- February 2023
-<br>
-Evaluated student performance and progression toward competencies based on course rubrics
-Communicated regularly with students to align on progress, expectations, and celebrated milestones
-Maintained accurate and current records and documentation related to student progress
-<br>
-<br>
-UCP Seguin, Chicago, IL                                                                         September 2018– December 2018
-<br>
-Database Developer Internship    
-<br>
-Redeveloped front-end accessible for over 300 case files with a database created with Microsoft Access
-Implemented local hosting that improved report tracking for 20 social workers
-Introduced MySQL workbench to create a local network  that increased report accuracy and accessibility
-<br>
-United States Army Reserves, Homewood, IL                                                                                  August 2016 - 2022
-<br>
-Construction Engineer
-<br>
+<h2>Resume</h2>
+<div class="content">
+    <!-- Experience Section -->
+    <div id="resumeExperience">
+        <h3>Experience</h3>
+        <ol class="resumeExperience">
+            <li>Technical & Program Manager</li>
+            <li>Managed Web Dev and AI & ML bootcamps</li>
+            <li>Supported instructors with course curriculum</li>
+            <li>Developed performance monitoring tools</li>
+            <li>Mentored students, including ADA needs</li>
+        </ol>
 
-Johnny Sprockets, Chicago, IL                                                                               August 2016 - Present
-<br>
-Service mechanic/ Sales representative
-<br>
-<br>
-EDUCATION
-<br>
-Illinois Institution of Technology, Chicago, IL                                                                                  Fall 2024 - Present  
-<br>
-Master of Information Technology and Management, Specialization: Managaement Information Systems
-<br>
+        <ol class="resumeExperience">
+            <li>FullStack Developer</li>
+            <li>JavaScript E-Commerce</li>
+            <li>Java User & Admin Management Tool</li>
+            <li>Functional & Factory-based Apps</li>
+        </ol>
 
-Fullstack Academy, New York, NY                                                                                                             October 2021
-<br>
-Certificate in Web Development
+        <ol class="resumeExperience">
+            <li>Coding Instructor</li>
+            <li>Lead lectures</li>
+            <li>Maintained progression</li>
+            <li>Hosted office hours</li>
+        </ol>
+    </div>
 
-<br>
-University of Illinois at Chicago, Chicago, IL                                                                         December 2018
-<br>
-Bachelor of Science in Information and Decision Sciences, Minor MIS
+    <!-- Education Section -->
+    <div id="resumeEducation">
+ 
+        
+        <ul>
+            <h3>Education</h3>
+            <div class="logos">
+            <li>
+                <img src="../media/logo_iit.png" alt="Illinois Institute of Technology Logo">
+                <div class="schoolAndService" class="iit" id="iit">
+                    <p id="resumeWeb">Illinois Institute of Technology</p>
+                    <p id="resumeWeb">Information Technology Management</p>
+                    <p id="resumeMobile">IIT</p>
+                    <!-- <p id="resumeMobile">ITM</p> -->
+                </div>
+            </li>
+            <li>
+                <img src="../media/logo_UIC.png" alt="University of Illinois at Chicago Logo">
+                <div class="schoolAndService" id=""uic>
+                    <p id="resumeWeb">University of Illinois at Chicago</p>
+                    <p id="resumeWeb">Information Decision Science</p>
+                    <p id="resumeMobile">UIC</p>
+                    <!-- <p id="resumeMobile">IDS</p> -->
+                </div>
+            </li>
+            <li>
+                <img src="../media/logo_fsa.png" alt="Fullstack Academy Logo">
+                <div class="schoolAndService" id="fsa">
+                    <p id="resumeWeb">Fullstack Academy</p>
+                    <p id="resumeWeb">Website Development</p>
+                    <p id="resumeMobile">FSA</p>
+                    <!-- <p id="resumeMobile">Web</p> -->
+                </div>
+            </li>
+        </div>
+        </ul>
+        <ul>
+            <h3>Service</h3>
+            <li>
+                <img src="../media/logo_Army.png" alt="Army Logo">
+                <div class="schoolAndService">
+                    <p id="resumeWeb">United States Army</p>
+                    <p id="resumeWeb">Engineer</p>
+                    <p id="resumeMobile">USAR</p>
+                    <!-- <p id="resumeMobile">Engr</p> -->
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

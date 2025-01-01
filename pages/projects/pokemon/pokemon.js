@@ -51,13 +51,13 @@ class PokedexController {
     }
 
     renderPokemon() {
-        const pokemonSelectElement = document.getElementById("leftDiv");
+        
 
-        if (!pokemonSelectElement) {
+        if (!leftDiv) {
             console.error("Element with ID #pokemonSelect not found.");
                 return;
         }
-        pokemonSelectElement.innerHTML = ''
+        leftDiv.innerHTML = ''
         this.pokemonArray.forEach(pokemon => {
             const li = document.createElement("li");
             const img = document.createElement("img");
@@ -71,29 +71,33 @@ class PokedexController {
                 });
 
            li.appendChild(img);
-            pokemonSelectElement.appendChild(li);
+           leftDiv.appendChild(li);  
         });
     }
 
     setupDropArea() {
-        const pokemonBoxContainer = document.getElementById("rightDiv");
+       
        
         // Ensure the drop area is set up correctly
-        if (!pokemonBoxContainer) {
+        if (!rightDiv) {
             console.error("Element with ID #pokemonBoxContainer not found.");
             return;
         }
-         pokemonBoxContainer.innerHTML = ''
+        rightDiv.innerHTML = ''
+       
         //adding background img to container
-        pokemonBoxContainer.style.backgroundImage = "url(../media/pokemon_farrm.jpeg"
-        pokemonBoxContainer.style.backgroundSize = "cover"; // Optional: makes the image cover the entire div
-        pokemonBoxContainer.style.backgroundPosition = "center";
+        rightDiv.style.backgroundImage = "url(../media/pokemon_farrm.jpeg)"
+        rightDiv.style.backgroundSize = "cover"; // Optional: makes the image cover the entire div
+        rightDiv.style.backgroundPosition = "center";
+        rightDiv.style.width = "100%";
+        rightDiv.style.height = "400px";
+
         // Allow the drop target to accept dragged items
-        pokemonBoxContainer.addEventListener("dragover", (event) => {
+        rightDiv.addEventListener("dragover", (event) => {
             event.preventDefault(); // Allow the drop
         });
 
-        pokemonBoxContainer.addEventListener("drop", (event) => {
+        rightDiv.addEventListener("drop", (event) => {
             event.preventDefault();
             const imgSrc = event.dataTransfer.getData("text"); // Get the dragged image source
 
@@ -106,8 +110,8 @@ class PokedexController {
             img.style.position = "absolute";
 
             // Randomize the position of the image within the container
-            const containerWidth = pokemonBoxContainer.offsetWidth;
-            const containerHeight = pokemonBoxContainer.offsetHeight;
+            const containerWidth = rightDiv.offsetWidth;
+            const containerHeight = rightDiv.offsetHeight;
             const randomX = Math.floor(Math.random() * (containerWidth - 100)); // Random X position (considering the width of the image)
             const randomY = Math.floor(Math.random() * (containerHeight - 100)); // Random Y position (considering the height of the image)
 
@@ -115,7 +119,7 @@ class PokedexController {
             img.style.top = `${randomY}px`;
 
             // Append the image to the container
-            pokemonBoxContainer.appendChild(img);
+            rightDiv.appendChild(img);
             });
     }
 
@@ -129,8 +133,8 @@ class PokedexController {
 
 function initializePokemon(){
     console.log('fetching pokemon content')
-    // dummy testing
-
+    const leftDiv = document.getElementById("leftDiv");
+    const rightDiv = document.getElementById("rightDiv");
     const controller = new PokedexController(leftDiv, rightDiv);
     controller.initialize();
 

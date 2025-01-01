@@ -1,61 +1,94 @@
 <style>
 #sectionPortfolio {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100vh;
-    margin: 10px;
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack child elements vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+
+    height: 100vh; /* Full viewport height */
+    
+}
+
+#portfolioContent {
     border: 2px solid #90EE90;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 800px;
+    height: 70vh;
+    /* ???? here*/ 
+}
+#portfolioContent h2 {
+    height: 20px;
+    width: 100%;
 }
 
-#sectionPortfolio h2 {
-    margin: 20px 0;
-}
-
-#sectionPortfolio ol {
+#portfolioContent ol {
     display: flex;
     width: 100%;
     margin: 0;
     padding: 0;
     list-style: none;
     flex: 1; /* Ensure this section takes up available vertical space */
+    height: 95%;
 }
 
-#sectionPortfolio ol li {
+#portfolioContent ol li {
     padding: 10px;
 }
 
-#sectionPortfolio ol li:first-child {
-    flex: 1; /* 1/3 of the width */
-    padding-right: 20px;
+#portfolioContent #sidePane{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 25%; /* 1/3 of the width */
+    justify-content: space-between;
 }
 
-#sectionPortfolio ol li:nth-child(2) {
-    flex: 2; /* 2/3 of the width */
-}
-
-#sectionPortfolio ol li ul {
+#portfolioContent #sidePane ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-#sectionPortfolio ol li ul li {
-    cursor: pointer;
-    margin: 10px 0;
-    padding: 5px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+.projectList {
+    list-style: none; /* Remove default list styling */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px; /* Add spacing between items */
 }
 
-#sectionPortfolio ol li ul li:hover {
-    background-color: #d3f7d3;
+.projectList li {
+    background-color: #333333; /* Light background to contrast with the green border */
+    color: white; /* Dark text for readability */
+    border: 1px solid #90EE90; /* Matches the theme's green accent */
+    border-radius: 6px; /* Rounded corners */
+    padding: 10px 15px; /* Add some padding for better spacing */
+    cursor: pointer; /* Indicate interactivity */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effects */
+    text-align: center; /* Center the text */
+    font-size: 1rem; /* Consistent font size */
 }
 
-#sectionPortfolio ol li ul li.active {
-    background-color: #90EE90; /* Highlight active item */
+.projectList li:hover {
+    transform: translateY(-3px); /* Subtle lift effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for hover */
+    background-color: #3B4049; /* Slightly lighter green on hover */
+}
+
+.projectList li:active {
+    transform: translateY(0); /* Return to normal position on click */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduce shadow on click */
+}
+
+
+#sectionPortfolio #mainPane{
+    flex: 1 1 75%; /* 2/3 of the width */
+    height: 100%;
+    width: 100%;
+}
+#mainPane li{
+    list-style: none;
 }
 
 #content {
@@ -63,18 +96,9 @@
     flex-direction: column;
     justify-content: flex-start; /* Ensure items align at the top */
     align-items: flex-start; /* Ensure items align at the left */
-    padding: 20px;
-    height: 100%;
-}
-#content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 20px;
+    padding: 5px;
     height: 100%;
     width: 100%;
-    box-sizing: border-box;
 }
 
 #content ul {
@@ -89,60 +113,108 @@
     margin: 5px 0; /* Optional spacing between items */
     padding: 0; /* Ensure no additional padding */
 }
-
-
-#sectionPortfolio .bottom-section {
+#projectTech{
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+#projectGithub {
+    align-items: center; /* Vertically align items */
+    justify-content: center; /* Center items horizontally */
+    background-color: #f0f0f0;
+    border-radius: 1em;
+    padding: 10px 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none; /* Remove underline on the link */
+    width: 120px;
+}
+#projectGithub a{
+    display: flex; /* Ensure link content aligns properly */
+    align-items: center;
+    text-decoration: none;
+    color: white;
     width: 100%;
-    flex: 1; /* Take up remaining vertical space */
 }
-
-#sectionPortfolio .bottom-section .half {
-    flex: 1; /* 50% width each */
-    padding: 10px;
-    border: 1px solid #90EE90;
-    height: 100%; /* Take up full height of bottom section */
-    box-sizing: border-box; /* Ensure padding is included in height calculation */
+#projectGithub img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin-right: 10px; /* Add spacing between image and text */
 }
-
-
+@media (max-width: 768px) {
+    #sectionPortfolio {
+        margin-top: 400px;
+        margin-bottom: 300px;
+        width: 600px;
+        height: 90vh;
+    }
+    #sectionPortfolio h2{
+        margin-top: 30px;
+    }
+    #portfolioContent #sidePane{
+        display: flex;
+        flex-direction: row;
+        flex: none;
+        height: 100px;
+    }
+    #portfolioContent #sidePane ul:first-child{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 350px;
+        height: 40px;
+    }
+    #portfolioContent ol {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex: 1; /* Ensure this section takes up available vertical space */
+}
+#portfolioContent{
+        width: 100%;
+        flex: 1;
+    }
+}
 </style>
-<div id="sectionPortfolio">
-    <h2><span class="highlight">3. </span> Portfolio</h2>
-    
-    <ol> Projects
+<h2>Portfolio</h2>
+<div id="portfolioContent">
+    <ol> 
         <!-- Left side section (1/3 width) -->
-        <li>
-            <ul class="projects">
-                <li onmouseover="loadContent('projects/bikeShopApp/bikeShop', 'content')" onclick="loadContent('projects/bikeShopApp/bikeShop', 'content'); loadContent('projects/bikeShopApp/bikeShopL', 'leftDiv' ); loadContent('projects/bikeShopApp/bikeShopR', 'rightDiv' )" class="active">Bike Shop</li>
-                <li id="pokemonLi" onmouseover="loadContent('projects/pokemon/pokemon', 'content')" onclick="loadContent('projects/pokemon/pokemon', 'content'); initializePokemon()">Pokemon</li>
+        <li id="sidePane">
+            <ul class="projectList">
+                <li onClick="loadContent('projects/bikeShop', 'mainPane'); loadContent('projects/bikeShopTech','projectTech')">Bike Shop</li>
+                <li id="pokemonLi" onClick="loadContent('projects/pokemon/pokemon', 'mainPane'); loadContent('projects/pokemon/pokemonTech', 'projectTech');initializePokemon()">
+                                Pokemon</li>
+                <li onClick="loadContent('projects/Calculator','mainPane'); loadContent('projects/CalculatorTech','projectTech')">Calculator</li>
+                    <!-- Dummy Data to fit more <li> into container
+                    <li>new project</li>
+                    <li>12rsdfgsdgsdg</li>
+                    <li>sdgsdgsdgs</li> -->
+            </ul>
+            <ul id="projectTech">
+                <!-- <li id="projectGithub" style="background-color: black;">
+                    <a href="https://github.com/spizarro3/541_lab_3" target="_blank" rel="noopener noreferrer">
+                        <img src="../media/logo_github.png" alt="GitHub">Clone here
+                    </a>
+                </li> -->
+                <li></li>
+                <li></li>
             </ul>
         </li>
         
         <!-- Right side section (2/3 width) -->
-        <li>
-            <div id="content">
-                <h3>Buffer content</h3>
-                <ul>
-                    <li>buff</li>
-                    <li>nerff</li>
-                </ul>
-            </div>
+        <li id="mainPane" style="max-width: 100%">
+            <article id="content" style="max-width: 100%">
+                <h3>Pick a Project! 🌟</h3>
+                <p>Explore my projects and get a glimpse of what I’ve been building! Each project comes with a brief description, vibrant visuals, and—where applicable—functional presentations, like the interactive Pokémon app.</p>
+                <p>Curious about the tools behind the magic? You’ll find the technologies used labeled at the bottom left of each project. Dive in and discover! 🚀</p>
+                <p>Github profile linked <a href="#sectionContact" style="color:white">below</a></p>
+            </article>
         </li>
     </ol>
-
-    <hr style="width: 100%; border: 1px solid #90EE90; margin: 20px 0" >
-
-    <!-- 2 Additional Divs (Bottom left and Bottom right) -->
-    <div class="bottom-section">
-        <div class="half" id="leftDiv">
-            <p>Left content (half-width)</p>
-        </div>
-        
-        <div class="half" id="rightDiv">
-            <p>Right content (half-width)</p>
-        </div>
-    </div>
 </div>
-
-<script>console.log('does this work now')</script>

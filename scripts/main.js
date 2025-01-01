@@ -36,7 +36,6 @@ async function loadProjects(){
 console.log('Loading html content...');
 loadContent('home', 'sectionHome'); 
 loadContent('aboutme', 'sectionAboutMe'); 
-loadContent('pokemon/pokemon', 'sectionPokemon'); 
 loadContent('skills', 'sectionSkills'); 
 loadContent('portfolio', 'sectionPortfolio'); 
 loadContent('resume', 'sectionResume'); 
